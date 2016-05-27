@@ -9,13 +9,13 @@ const someArrayOfQueries = [
 ]
 
 test('Original (synchronous) version of runMultipleQueries', assert => {
-  const msg = 'runMultipleQueires(someArrayOfQueries) returns []'
+  const msg = 'runMultipleQueries(someArrayOfQueries) returns []'
   assert.deepEqual(original(someArrayOfQueries), [], msg)
   assert.end()
 })
 
 test('Working (async) version of runMultipleQueries', assert => {
-  const msg = 'runMultipleQueires(someArrayOfQueries) returns ["c", "n"]'
+  const msg = 'runMultipleQueries(someArrayOfQueries) returns ["c", "n"]'
   working(someArrayOfQueries)
     .then(result => {
       assert.deepEqual(result, ['c', 'n'], msg)
