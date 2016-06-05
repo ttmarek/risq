@@ -14,6 +14,21 @@ const mul2 = (n) => n.map(v => v * 2)  // multiply each element by2
 const add2 = (n) => n.map(v => v + 2)  // add 2 to each element
 const sqr = (n) => n.map(v => v * v)   // square each element
 
+// make an array of length n whose every element is n
+const makeArray = (n) => {
+  const arr = []
+  for (let i = 0; i < n; i++) {
+    arr[i] = n
+  }
+  return arr
+}
+
+// sum all numbers (e.g. sum(2, 2, 2) returns 6)
+const sum = (...numbers) => {
+  return numbers.reduce((result, next) => next + result, 0)
+}
+
+// mock function that
 // Pipe 1
 test('Running pipe1 with no arguments.', assert => {
   const msg = `pipe1()(1,2,3) returns [1, 2, 3]`
@@ -60,6 +75,13 @@ test('Running pipe2 with multiple arguments', assert => {
   assert.end()
 })
 
+test('Running pipe2 with functions that take multiple args.', assert => {
+  const msg = `pipe2(Math.min, makeArray, sum)(3, 7, 90) returns 9`
+
+  assert.deepEqual(pipe2(Math.min, makeArray, sum)(3, 7, 90), 9, msg)
+  assert.end()
+})
+
 // Pipe 3
 test('Running pipe3 with a single argument.', assert => {
   const msg = `pipe3(Math.max)(1,2,3) returns 3`
@@ -80,5 +102,12 @@ test('Running pipe3 with an array argument', assert => {
   const msg = `pipe3(mul2, add2, sqr)([1,2,3,4]) returns [16, 36, 64, 100]`
 
   assert.deepEqual(pipe3(mul2, add2, sqr)([1,2,3,4]), [16, 36, 64, 100], msg)
+  assert.end()
+})
+
+test('Running pipe3 with functions that take multiple args.', assert => {
+  const msg = `pipe3(Math.min, makeArray, sum)(3, 7, 90) returns 9`
+
+  assert.deepEqual(pipe3(Math.min, makeArray, sum)(3, 7, 90), 9, msg)
   assert.end()
 })
